@@ -13,6 +13,8 @@ import (
 	"net/http"
 	"time"
 
+	"imuslab.com/zoraxy/mod/auth/sso/authentik"
+
 	"imuslab.com/zoraxy/mod/access"
 	"imuslab.com/zoraxy/mod/acme"
 	"imuslab.com/zoraxy/mod/auth"
@@ -42,8 +44,8 @@ import (
 const (
 	/* Build Constants */
 	SYSTEM_NAME       = "Zoraxy"
-	SYSTEM_VERSION    = "3.2.0"
-	DEVELOPMENT_BUILD = false /* Development: Set to false to use embedded web fs */
+	SYSTEM_VERSION    = "3.2.1"
+	DEVELOPMENT_BUILD = true /* Development: Set to false to use embedded web fs */
 
 	/* System Constants */
 	TMP_FOLDER                   = "./tmp"
@@ -142,7 +144,8 @@ var (
 	pluginManager      *plugins.Manager          //Plugin manager for managing plugins
 
 	//Authentication Provider
-	autheliaRouter *authelia.AutheliaRouter //Authelia router for Authelia authentication
+	autheliaRouter  *authelia.AutheliaRouter   //Authelia router for Authelia authentication
+	authentikRouter *authentik.AuthentikRouter //Authentik router for Authentik authentication
 
 	//Helper modules
 	EmailSender       *email.Sender         //Email sender that handle email sending
